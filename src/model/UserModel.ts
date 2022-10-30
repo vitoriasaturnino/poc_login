@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { db } from '../database/db';
 
-const UsuariosModel = db.define('usuarios', {
+const UserModel = db.define('usuarios', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -24,4 +24,4 @@ const UsuariosModel = db.define('usuarios', {
   },
 });
 
-export default UsuariosModel;
+export default UserModel;
