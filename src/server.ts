@@ -1,5 +1,15 @@
-import express from "express"; 
+import express from "express";
+const sequelize = require('sequelize');
+const dotenv = require('dotenv').config();
+const cookieParser = require('cookie-parser');
+
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-app.listen(3000, () => console.log("Server is runnin localhost:3000"));
+//middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+app.listen(3000, () => console.log(`Server is runnin localhost ${PORT}`));
