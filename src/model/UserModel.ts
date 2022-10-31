@@ -1,7 +1,26 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model, Optional } from 'sequelize';
+// s
 import { db } from '../database/db';
 
-const UserModel = db.define('usuarios', {
+interface UserAttributes {
+  id: Number;
+  role: String;
+  email: String;
+  password: String;
+}
+
+interface UserCreationAttributes
+  extends Optional<UserAttributes, 'id'> {}
+
+interface UserInstance
+  extends Model<UserAttributes, UserCreationAttributes>,
+    UserAttributes {
+      createdAt?: Date;
+      updatedAt?: Date;
+    }
+
+const UserModel = db.define<UserInstance>(
+  'usuarios', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -18,7 +37,7 @@ const UserModel = db.define('usuarios', {
     allowNull: false,
     unique: true,
   },
-  senha: {
+  password: {
     type: DataTypes.STRING,
     allowNull: false,
   },
