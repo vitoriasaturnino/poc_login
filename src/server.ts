@@ -1,21 +1,16 @@
 import express from "express";
-import Sequelize from 'sequelize';
 import cookieParser from 'cookie-parser';
 import userRoutes from './routes/userRoutes';
 import { db } from './database/db';
+import 'dotenv/config';
 
-const dotenv = require('dotenv').config();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3003;
 const app = express();
 
 //middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-db.Sequelize.sync({ force: true }).then(() => {
-  console.log("db has been re sync");
-});
 
 app.use('/api/users', userRoutes);
 
